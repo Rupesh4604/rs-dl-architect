@@ -2,11 +2,13 @@
 
 **Expert guidance for designing, analyzing, and reviewing deep learning architectures in remote sensing and satellite imagery.**
 
+![](images/rs-dl-img.png)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-orange.svg)](https://github.com/anthropics/skills)
 [![Documentation](https://img.shields.io/badge/docs-live-green.svg)](https://your-username.github.io/rs-dl-architect)
 
-A comprehensive Claude AI skill covering segmentation, change detection, multi-modal fusion, temporal analysis, foundation models (SatMAE, Prithvi, GeoSAM), object detection, and uncertainty quantification. Supports both **PyTorch** and **TensorFlow** with production-ready code templates.
+A comprehensive Claude AI skill covering segmentation, change detection, multi-modal fusion, temporal analysis, foundation models (SatMAE, Prithvi, GeoSAM), object detection, and uncertainty quantification. Supports both **PyTorch** and **TensorFlow** with production-ready code templates. ([ Link to website ](https://rupesh4604.github.io/rs-dl-architect/))
 
 ---
 
