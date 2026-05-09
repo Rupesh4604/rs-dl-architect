@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      rs-dl-architect — Deep Learning Architecture Expert for Remote Sensing
+    </title>
+    <meta
+      name="description"
+      content="Expert guidance for designing, analyzing, and reviewing deep learning architectures in remote sensing and satellite imagery."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #0a0e14;
+        --bg-secondary: #0f1419;
+        --bg-tertiary: #151a21;
+        --accent-cyan: #39bae6;
+        --accent-green: #91b362;
+        --accent-orange: #ff8f40;
+        --accent-purple: #a37acc;
+        --text-primary: #e6e6e6;
+        --text-secondary: #b3b3b3;
+        --text-tertiary: #808080;
+        --border-color: #1f2430;
+        --code-bg: #0d1117;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "IBM Plex Sans", sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Animated satellite grid background */
+      .satellite-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(rgba(57, 186, 230, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(57, 186, 230, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridSlide 20s linear infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes gridSlide {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
+      }
+
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent-cyan),
+          transparent
+        );
+        animation: scan 8s linear infinite;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.4;
+      }
+
+      @keyframes scan {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Header */
+      header {
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        background: rgba(10, 14, 20, 0.8);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        letter-spacing: -0.02em;
+      }
+
+      .logo span {
+        color: var(--accent-orange);
+      }
+
+      nav a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        margin-left: 2rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        font-size: 0.95rem;
+      }
+
+      nav a:hover {
+        color: var(--accent-cyan);
+      }
+
+      /* Hero */
+      .hero {
+        padding: 6rem 0 4rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--text-primary) 0%,
+          var(--accent-cyan) 50%,
+          var(--accent-purple) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientShift 8s ease infinite;
+        background-size: 200% 200%;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .hero .subtitle {
+        font-size: 1.3rem;
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        line-height: 1.6;
+      }
+
+      .hero .tagline {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.95rem;
+        color: var(--accent-green);
+        margin-bottom: 3rem;
+        letter-spacing: 0.05em;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        font-size: 1rem;
+        border: 2px solid transparent;
+      }
+
+      .btn-primary {
+        background: var(--accent-cyan);
+        color: var(--bg-primary);
+      }
+
+      .btn-primary:hover {
+        background: transparent;
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border-color: var(--accent-orange);
+        color: var(--accent-orange);
+      }
+
+      .btn-secondary:hover {
+        background: var(--accent-orange);
+        color: var(--bg-primary);
+        transform: translateY(-2px);
+      }
+
+      /* Features Grid */
+      .features {
+        padding: 4rem 0;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--text-primary);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .feature-card {
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-cyan);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        color: var(--accent-cyan);
+      }
+
+      .feature-card p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      /* Use Cases */
+      .use-cases {
+        padding: 4rem 0;
+        background: var(--bg-secondary);
+        margin: 4rem -100vw;
+        padding-left: 100vw;
+        padding-right: 100vw;
+      }
+
+      .use-case {
+        background: var(--bg-tertiary);
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--accent-green);
+      }
+
+      .use-case-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.1rem;
+        color: var(--accent-green);
+        margin-bottom: 0.5rem;
+      }
+
+      .use-case-query {
+        color: var(--text-secondary);
+        font-style: italic;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        border-left: 2px solid var(--border-color);
+      }
+
+      .use-case-result {
+        color: var(--text-primary);
+        line-height: 1.7;
+      }
+
+      /* Code example */
+      .install-section {
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .code-block {
+        background: var(--code-bg);
+        padding: 2rem;
+        border-radius: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.95rem;
+        color: var(--accent-green);
+        margin: 2rem auto;
+        max-width: 700px;
+        text-align: left;
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .code-block::before {
+        content: "TERMINAL";
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--accent-cyan);
+        color: var(--bg-primary);
+        padding: 0.25rem 0.75rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .code-line {
+        margin: 0.5rem 0;
+      }
+
+      .prompt {
+        color: var(--accent-purple);
+      }
+
+      /* Coverage */
+      .coverage {
+        padding: 4rem 0;
+      }
+
+      .coverage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .coverage-item {
+        background: var(--bg-secondary);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+      }
+
+      .coverage-item:hover {
+        border-color: var(--accent-orange);
+      }
+
+      .coverage-item h4 {
+        color: var(--accent-orange);
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+      }
+
+      .coverage-item ul {
+        list-style: none;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .coverage-item li {
+        padding: 0.25rem 0;
+        padding-left: 1.25rem;
+        position: relative;
+      }
+
+      .coverage-item li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--accent-cyan);
+      }
+
+      /* Stats */
+      .stats {
+        padding: 4rem 0;
+        background: var(--bg-secondary);
+        margin: 4rem -100vw;
+        padding-left: 100vw;
+        padding-right: 100vw;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .stat-item {
+        padding: 2rem;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      /* Footer */
+      footer {
+        padding: 3rem 0;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        color: var(--text-tertiary);
+      }
+
+      footer a {
+        color: var(--accent-cyan);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero .subtitle {
+          font-size: 1.1rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="satellite-grid"></div>
+    <div class="scanline"></div>
+
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">rs<span>-dl-</span>architect</div>
+          <nav>
+            <a href="#features">Features</a>
+            <a href="#use-cases">Examples</a>
+            <a href="#install">Install</a>
+            <a href="https://github.com/anthropics/skills">GitHub</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Deep Learning Architecture Expert for Remote Sensing</h1>
+          <p class="subtitle">
+            Design, analyze, and review deep learning models for satellite
+            imagery, aerial photos, and geospatial AI — with production-ready
+            code and honest engineering tradeoffs.
+          </p>
+          <p class="tagline">
+            [ PYTORCH • TENSORFLOW • FOUNDATION MODELS • MULTISPECTRAL ]
+          </p>
+          <div class="cta-buttons">
+            <a href="#install" class="btn btn-primary">Install Plugin</a>
+            <a href="#use-cases" class="btn btn-secondary">See Examples</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <div class="container">
+          <h2 class="section-title">
+            Built for Real Remote Sensing Challenges
+          </h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🛰️</div>
+              <h3>Multi-Modal Fusion</h3>
+              <p>
+                SAR + optical, RGB + DEM, hyperspectral + LiDAR. Handles
+                early/mid/late fusion patterns, modality dropout, and resolution
+                alignment — not just naive channel stacking.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📡</div>
+              <h3>Foundation Models</h3>
+              <p>
+                SatMAE, Prithvi-EO, Clay, DOFA, GeoSAM, RemoteCLIP. Covers
+                LoRA/PEFT adaptation, multispectral input adapters, and when to
+                use each vs training from scratch.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔍</div>
+              <h3>Change Detection</h3>
+              <p>
+                Bi-temporal siamese, BIT, ChangeFormer, ChangeMamba.
+                Distinguishes binary vs semantic CD, handles registration
+                errors, and flags pseudo-change patterns.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>Temporal Analysis</h3>
+              <p>
+                ConvLSTM, U-TAE, TSViT, Presto. Processes irregular time series,
+                handles cloud masking, and separates per-pixel vs per-tile
+                temporal modeling strategies.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3>Code Templates</h3>
+              <p>
+                PyTorch + TensorFlow starter patterns. Multispectral adapters,
+                U-Net, siamese networks, Dice+CE loss, tile inference with
+                blending, deep ensembles — all with shape annotations.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔬</div>
+              <h3>Rigorous Reviews</h3>
+              <p>
+                10-section checklist covering task-architecture match, data
+                flow, loss design, geographic generalization, and
+                reproducibility. Identifies blocking issues with concrete fixes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="use-cases" class="use-cases">
+        <div class="container">
+          <h2 class="section-title">Example Use Cases</h2>
+
+          <div class="use-case">
+            <div class="use-case-title">01. Architecture Selection</div>
+            <div class="use-case-query">
+              "I need to detect crop field boundaries from 10m Sentinel-2 data
+              with only 500 labeled samples. What architecture should I use?"
+            </div>
+            <div class="use-case-result">
+              → Recommends foundation-model fine-tuning (Prithvi-EO with LoRA),
+              explains why label efficiency matters, provides PyTorch
+              implementation with proper multispectral input handling.
+            </div>
+          </div>
+
+          <div class="use-case">
+            <div class="use-case-title">02. Multi-Modal Design</div>
+            <div class="use-case-query">
+              "How do I combine SAR and optical data for flood mapping? Should I
+              fuse early or late?"
+            </div>
+            <div class="use-case-result">
+              → Analyzes modality differences (speckle vs additive noise),
+              recommends mid-level cross-attention fusion, flags modality
+              dropout requirement, provides dual-encoder architecture.
+            </div>
+          </div>
+
+          <div class="use-case">
+            <div class="use-case-title">03. Code Review</div>
+            <div class="use-case-query">
+              "Review my U-Net for building extraction — using ImageNet weights
+              with 13 Sentinel-2 bands via channel concat."
+            </div>
+            <div class="use-case-result">
+              → Identifies blocking issue (silently dropping spectral
+              information), provides specific fix (multispectral adapter
+              pattern), checks receptive field vs GSD.
+            </div>
+          </div>
+
+          <div class="use-case">
+            <div class="use-case-title">04. Uncertainty Quantification</div>
+            <div class="use-case-query">
+              "My crop classifier fails catastrophically on some tiles. How do I
+              know when not to trust it?"
+            </div>
+            <div class="use-case-result">
+              → Recommends deep ensembles (5 seeds) + temperature scaling,
+              explains epistemic vs aleatoric uncertainty, provides selective
+              prediction pattern.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="install" class="install-section">
+        <div class="container">
+          <h2 class="section-title">Installation</h2>
+          <div class="code-block">
+            <div class="code-line">
+              <span class="prompt">$</span> claude plugin install
+              rs-dl-architect
+            </div>
+            <div class="code-line">
+              <span style="color: var(--text-secondary)"># or via GitHub</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$</span> git clone
+              https://github.com/your-repo/rs-dl-architect
+            </div>
+            <div class="code-line">
+              <span class="prompt">$</span> cp -r rs-dl-architect
+              ~/.claude/skills/
+            </div>
+          </div>
+          <p style="color: var(--text-secondary); margin-top: 2rem">
+            Works in Claude Code, Claude.ai, and any environment with the
+            SKILL.md specification
+          </p>
+        </div>
+      </section>
+
+      <section class="coverage">
+        <div class="container">
+          <h2 class="section-title">
+            Coverage Across Remote Sensing Deep Learning
+          </h2>
+          <div class="coverage-grid">
+            <div class="coverage-item">
+              <h4>Segmentation</h4>
+              <ul>
+                <li>U-Net family</li>
+                <li>SegFormer, UNetFormer</li>
+                <li>Mask2Former</li>
+                <li>DC-Swin, RS-Mamba</li>
+              </ul>
+            </div>
+
+            <div class="coverage-item">
+              <h4>Object Detection</h4>
+              <ul>
+                <li>RetinaNet, FCOS</li>
+                <li>DETR, DINO</li>
+                <li>Oriented bbox (DOTA)</li>
+                <li>Small-object patterns</li>
+              </ul>
+            </div>
+
+            <div class="coverage-item">
+              <h4>Foundation Models</h4>
+              <ul>
+                <li>SatMAE, Prithvi-EO</li>
+                <li>Clay, DOFA</li>
+                <li>GeoSAM, RemoteCLIP</li>
+                <li>LoRA/PEFT adaptation</li>
+              </ul>
+            </div>
+
+            <div class="coverage-item">
+              <h4>Interpretability</h4>
+              <ul>
+                <li>Grad-CAM, attention</li>
+                <li>MC dropout, ensembles</li>
+                <li>Evidential learning</li>
+                <li>Conformal prediction</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">1,460+</div>
+              <div class="stat-label">Lines of Expert Guidance</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">10</div>
+              <div class="stat-label">Specialized References</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">2</div>
+              <div class="stat-label">Frameworks (PyTorch + TF)</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Remote Sensing Focused</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>Built for the remote sensing + geospatial AI community</p>
+        <p style="margin-top: 1rem">
+          <a href="https://github.com/your-repo/rs-dl-architect">GitHub</a> •
+          <a href="mailto:your-email@example.com">Contact</a> •
+          <a href="https://github.com/anthropics/skills">Anthropic Skills</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.85rem">MIT License • 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>
