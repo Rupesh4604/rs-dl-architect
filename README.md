@@ -27,14 +27,14 @@ A comprehensive Claude AI skill covering segmentation, change detection, multi-m
 **Option 1: Via Claude Code Plugin** _(Recommended)_
 
 ```bash
-claude plugin install rs-dl-architect@your-username
+claude plugin install rs-dl-architect@Rupesh4604
 ```
 
 **Option 2: Manual Installation**
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/rs-dl-architect.git
+git clone https://github.com/Rupesh4604/rs-dl-architect.git
 
 # Copy to Claude skills directory
 cp -r rs-dl-architect/rs-dl-architect ~/.claude/skills/
@@ -44,7 +44,7 @@ cp -r rs-dl-architect/rs-dl-architect ./.claude/skills/
 ```
 
 **Option 3: Direct Download**
-Download the [latest .skill file](https://github.com/your-username/rs-dl-architect/releases) and upload via Claude.ai or Claude Code.
+Download the [latest .skill file](https://github.com/Rupesh4604/rs-dl-architect/releases) and upload via Claude.ai or Claude Code.
 
 ### Usage
 
@@ -280,7 +280,7 @@ You are free to:
 
 ## 🔗 Links
 
-- **Documentation:** [https://your-username.github.io/rs-dl-architect](https://your-username.github.io/rs-dl-architect)
+- **Documentation:** [https://Rupesh4604.github.io/rs-dl-architect](https://Rupesh4604.github.io/rs-dl-architect)
 - **Issues & Discussions:** [GitHub Issues](https://github.com/your-username/rs-dl-architect/issues)
 - **Claude Skills Specification:** [Anthropic Skills Repo](https://github.com/anthropics/skills)
 - **Related Work:** [Awesome Remote Sensing Change Detection](https://github.com/wenhwu/awesome-remote-sensing-change-detection)
@@ -309,9 +309,9 @@ Built for the remote sensing and geospatial AI community. Special thanks to:
 
 ## 📮 Contact
 
-**Maintainer:** [Your Name] ([@your-username](https://github.com/your-username))  
-**Email:** your-email@example.com  
-**Institution:** IIT Bombay, M.Tech (if you want to include)
+**Maintainer:** [M Rupesh Kumar Yadav](<[@Rupesh4604](https://github.com/Rupesh4604)>)  
+**Email:** rupesh32003@gmai.com  
+**Institution:** IIT Bombay, M.Tech
 
 For questions, feedback, or collaboration opportunities, open an issue or reach out directly.
 
