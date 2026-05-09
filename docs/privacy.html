@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - rs-dl-architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #0a0e14;
+        --bg-secondary: #0f1419;
+        --bg-tertiary: #151a21;
+        --accent-cyan: #39bae6;
+        --text-primary: #e6e6e6;
+        --text-secondary: #b3b3b3;
+        --border-color: #1f2430;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "IBM Plex Sans", sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.8;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      header {
+        padding: 2rem 0 3rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .logo {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        margin-bottom: 0.5rem;
+      }
+
+      .back-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+
+      .back-link:hover {
+        color: var(--accent-cyan);
+      }
+
+      main {
+        padding: 3rem 0;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .last-updated {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 3rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin: 2.5rem 0 1rem;
+        color: var(--accent-cyan);
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        margin: 1.5rem 0 0.75rem;
+        color: var(--text-primary);
+      }
+
+      p {
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+      }
+
+      ul {
+        margin: 1rem 0 1rem 2rem;
+        color: var(--text-secondary);
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      .highlight-box {
+        background: var(--bg-secondary);
+        border-left: 3px solid var(--accent-cyan);
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-radius: 4px;
+      }
+
+      .highlight-box p {
+        margin-bottom: 0;
+      }
+
+      code {
+        font-family: "JetBrains Mono", monospace;
+        background: var(--bg-tertiary);
+        padding: 0.2rem 0.5rem;
+        border-radius: 3px;
+        font-size: 0.9em;
+        color: var(--accent-cyan);
+      }
+
+      footer {
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      footer a {
+        color: var(--accent-cyan);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">rs-dl-architect</div>
+        <a href="index.html" class="back-link">← Back to Home</a>
+      </header>
+
+      <main>
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last Updated: May 9, 2026</p>
+
+        <div class="highlight-box">
+          <p>
+            <strong>TL;DR:</strong> rs-dl-architect is a local skill that runs
+            entirely within your Claude environment. We don't collect, store, or
+            transmit any of your data. Your conversations, code, and files stay
+            on your device or in your Claude account.
+          </p>
+        </div>
+
+        <h2>1. What is rs-dl-architect?</h2>
+        <p>
+          rs-dl-architect is an open-source skill (knowledge module) for Claude
+          AI that provides expert guidance on deep learning architectures for
+          remote sensing and satellite imagery. It consists of markdown files
+          containing instructions and reference materials.
+        </p>
+
+        <h2>2. Data Collection</h2>
+
+        <h3>We Do Not Collect Any Data</h3>
+        <p>rs-dl-architect does not:</p>
+        <ul>
+          <li>Collect any personal information</li>
+          <li>Track your usage or queries</li>
+          <li>Store your conversations</li>
+          <li>Transmit data to external servers</li>
+          <li>Use cookies or analytics</li>
+          <li>
+            Access your files beyond what you explicitly share with Claude
+          </li>
+        </ul>
+
+        <h3>How the Skill Works</h3>
+        <p>When you use rs-dl-architect:</p>
+        <ul>
+          <li>
+            The skill files (<code>SKILL.md</code> and references) are loaded
+            locally into Claude's context
+          </li>
+          <li>Claude reads these instructions to provide relevant guidance</li>
+          <li>All processing happens within your Claude session</li>
+          <li>No data leaves your Claude environment because of this skill</li>
+        </ul>
+
+        <h2>3. Third-Party Services</h2>
+
+        <h3>Claude AI (Anthropic)</h3>
+        <p>When you use rs-dl-architect with Claude:</p>
+        <ul>
+          <li>
+            Your interactions are subject to
+            <a
+              href="https://www.anthropic.com/legal/privacy"
+              target="_blank"
+              style="color: var(--accent-cyan)"
+              >Anthropic's Privacy Policy</a
+            >
+          </li>
+          <li>Claude processes your queries according to their terms</li>
+          <li>
+            rs-dl-architect itself does not change how Claude handles your data
+          </li>
+        </ul>
+
+        <h3>GitHub (for Distribution)</h3>
+        <p>If you download rs-dl-architect from GitHub:</p>
+        <ul>
+          <li>
+            GitHub may collect standard analytics (views, downloads, stars)
+          </li>
+          <li>
+            This is governed by
+            <a
+              href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+              target="_blank"
+              style="color: var(--accent-cyan)"
+              >GitHub's Privacy Policy</a
+            >
+          </li>
+          <li>
+            We do not receive any identifying information about downloaders
+          </li>
+        </ul>
+
+        <h2>4. Code You Write</h2>
+        <p>When rs-dl-architect provides code templates or examples:</p>
+        <ul>
+          <li>All code generation happens within Claude</li>
+          <li>The code is yours to use, modify, and share</li>
+          <li>
+            We have no access to the code you create or the models you build
+          </li>
+        </ul>
+
+        <h2>5. Open Source License</h2>
+        <p>rs-dl-architect is released under the MIT License:</p>
+        <ul>
+          <li>You can view, modify, and redistribute the skill</li>
+          <li>The source code is publicly available on GitHub</li>
+          <li>
+            You can audit exactly what the skill does by reading the files
+          </li>
+        </ul>
+
+        <h2>6. Children's Privacy</h2>
+        <p>
+          rs-dl-architect is an educational/research tool and does not target
+          children. We do not knowingly collect information from anyone,
+          including children under 13.
+        </p>
+
+        <h2>7. Changes to This Policy</h2>
+        <p>We may update this privacy policy to reflect:</p>
+        <ul>
+          <li>Changes in the skill's functionality</li>
+          <li>Legal or regulatory requirements</li>
+          <li>Community feedback</li>
+        </ul>
+        <p>
+          Changes will be posted on this page with an updated "Last Updated"
+          date. Major changes will be announced in the GitHub repository.
+        </p>
+
+        <h2>8. Your Rights</h2>
+        <p>Since we don't collect any data, there's nothing to:</p>
+        <ul>
+          <li>Request access to</li>
+          <li>Request deletion of</li>
+          <li>Opt out from</li>
+        </ul>
+        <p>Your data privacy is preserved by design.</p>
+
+        <h2>9. Security</h2>
+        <p>
+          The skill files are plain text (markdown) that you can inspect before
+          use. There is no:
+        </p>
+        <ul>
+          <li>Executable code that runs outside Claude</li>
+          <li>Network requests to external servers</li>
+          <li>Hidden functionality</li>
+        </ul>
+
+        <h2>10. Documentation Site (GitHub Pages)</h2>
+        <p>Our documentation website (hosted on GitHub Pages) may collect:</p>
+        <ul>
+          <li>Basic analytics via GitHub (page views, visitor countries)</li>
+          <li>No personal information, cookies, or tracking scripts</li>
+        </ul>
+
+        <h2>11. Contact</h2>
+        <p>
+          If you have questions about this privacy policy or rs-dl-architect:
+        </p>
+        <ul>
+          <li>
+            Open an issue on
+            <a
+              href="https://github.com/your-username/rs-dl-architect/issues"
+              target="_blank"
+              style="color: var(--accent-cyan)"
+              >GitHub</a
+            >
+          </li>
+          <li>
+            Email:
+            <a
+              href="mailto:your-email@example.com"
+              style="color: var(--accent-cyan)"
+              >your-email@example.com</a
+            >
+          </li>
+        </ul>
+
+        <h2>12. Transparency</h2>
+        <p>For complete transparency:</p>
+        <ul>
+          <li>
+            All skill source code is available at
+            <a
+              href="https://github.com/your-username/rs-dl-architect"
+              target="_blank"
+              style="color: var(--accent-cyan)"
+              >github.com/your-username/rs-dl-architect</a
+            >
+          </li>
+          <li>You can read every instruction the skill provides to Claude</li>
+          <li>No compiled code, no hidden functionality</li>
+        </ul>
+
+        <div class="highlight-box" style="margin-top: 3rem">
+          <p>
+            <strong>Bottom Line:</strong> rs-dl-architect is a
+            privacy-respecting, open-source educational tool. We built it to
+            help the remote sensing community, not to collect data. Your
+            research, your models, your data — all stay private.
+          </p>
+        </div>
+      </main>
+
+      <footer>
+        <p>rs-dl-architect is open source and maintained by the community</p>
+        <p style="margin-top: 1rem">
+          <a href="index.html">Home</a> •
+          <a href="https://github.com/your-username/rs-dl-architect">GitHub</a>
+          •
+          <a href="mailto:your-email@example.com">Contact</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.85rem">MIT License • 2026</p>
+      </footer>
+    </div>
+  </body>
+</html>
