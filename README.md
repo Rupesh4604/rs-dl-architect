@@ -208,6 +208,7 @@ rs-dl-architect/
 ├── README.md                  # This file
 ├── docs/                      # GitHub Pages documentation site
 │   └── index.html
+│   └── privacy.html
 ├── rs-dl-architect/          # The actual skill
 │   ├── SKILL.md              # Main entry point (~120 lines)
 │   └── references/           # Loaded on-demand
@@ -282,6 +283,7 @@ You are free to:
 
 - **Documentation:** [https://Rupesh4604.github.io/rs-dl-architect](https://Rupesh4604.github.io/rs-dl-architect)
 - **Issues & Discussions:** [GitHub Issues](https://github.com/your-username/rs-dl-architect/issues)
+- **Privacy Policy:** [rs-dl-architect/privacy](https://rupesh4604.github.io/rs-dl-architect/privacy.html)
 - **Claude Skills Specification:** [Anthropic Skills Repo](https://github.com/anthropics/skills)
 - **Related Work:** [Awesome Remote Sensing Change Detection](https://github.com/wenhwu/awesome-remote-sensing-change-detection)
 
