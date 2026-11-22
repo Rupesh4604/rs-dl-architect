@@ -314,7 +314,7 @@ Built for the remote sensing and geospatial AI community. Special thanks to:
 ## 📮 Contact
 
 **Maintainer:** [M Rupesh Kumar Yadav](<[@Rupesh4604](https://github.com/Rupesh4604)>)  
-**Email:** rupesh32003@gmai.com  
+**Email:** rupesh32003@gmail.com  
 **Institution:** IIT Bombay, M.Tech
 
 For questions, feedback, or collaboration opportunities, open an issue or reach out directly.
