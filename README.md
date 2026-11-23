@@ -293,9 +293,9 @@ You are free to:
 
 ## 📊 Stats
 
-![Lines of Code](https://img.shields.io/badge/lines-1460-brightgreen)
-![References](https://img.shields.io/badge/references-10-blue)
-![Frameworks](https://img.shields.io/badge/frameworks-2-orange)
+![Lines of code: 1,460](https://img.shields.io/badge/lines-1460-brightgreen)
+![References: 10](https://img.shields.io/badge/references-10-blue)
+![Frameworks: 2](https://img.shields.io/badge/frameworks-2-orange)
 
 **Coverage:** Segmentation • Change Detection • Data Fusion • Temporal • Foundation Models • Detection • Interpretability • Review
 
